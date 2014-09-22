@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+	<head>
+		<title>CSV comparator</title>
+		<link rel="stylesheet" href="styles/main.css">
+		<link rel="stylesheet" href="lib/bootstrap-3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="lib/bootstrap-3.2.0/css/bootstrap-theme.min.css">
+	</head>
+	<body class="gradient">
+		<div class="container topSpace">
+			<div class="row">
+				<div class="col-sm-6 col-xs-12">
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">CSV 1</h3>
+					  </div>
+					  <div class="panel-body">
+					    <textarea id="list1"></textarea>
+					  </div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">CSV 2</h3>
+					  </div>
+					  <div class="panel-body">
+					    <textarea id="list2"></textarea>
+					  </div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-xs-12">
+					<div class="center bottomSpace">
+						<a id="clearBtn" class="btn btn-default btn-lg" role="button">Clear results</a>
+						<a id="compareBtn" class="btn btn-primary btn-lg" role="button">Compare</a>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">CSV 1 Only</h3>
+					  </div>
+					  <div class="panel-body">
+					    <textarea id="list1Only"></textarea>
+					  </div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">CSV 2 Only</h3>
+					  </div>
+					  <div class="panel-body">
+					    <textarea id="list2Only"></textarea>
+					  </div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 col-xs-12">
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Common to both CSVs</h3>
+					  </div>
+					  <div class="panel-body">
+					    <textarea id="listCommon"></textarea>
+					  </div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Union</h3>
+					  </div>
+					  <div class="panel-body">
+					    <textarea id="listUnionDistinct"></textarea>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="lib/jquery/jquery-2.1.1/jquery-2.1.1.min.js"></script>
+		<script src="lib/jquery/autosize/jquery.autosize.min.js"></script>
+		<script src="lib/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				enableListAutoSize();
+			});
+
+			$("#compareBtn").click(function() {
+				clearResults();
+				var list1Items = $('#list1').val().split(',');
+				var list2Items = $('#list2').val().split(',');
+				var arrList1Only = [];
+				var arrList2Only = [];
+				var arrList1Duplicates = [];
+				var arrList2Duplicates = [];
+				var arrCommon = [];
+				var arrUnion = [];
+
+				$.each(list1Items, function(index, value) {
+					if ($.inArray(value, list2Items) === -1 ) {
+						// Add to list 1 only
+						if ($.inArray(value, arrList1Only) === -1) {
+							arrList1Only.push(value);
+						}
+					} else {
+						// Add to common list
+						if ($.inArray(value, arrCommon) === -1) {
+							arrCommon.push(value);
+						}
+					}
+					if ($.inArray(value, arrUnion) === -1) {
+						arrUnion.push(value);
+					}
+				});
+
+				$.each(list2Items, function(index, value) {
+					if ($.inArray(value, list1Items) === -1 ) {
+						// Add to list 2 only
+						if ($.inArray(value, arrList2Only) === -1) {
+							arrList2Only.push(value);
+						}
+					}
+
+					if ($.inArray(value, arrUnion)  === -1) {
+						arrUnion.push(value);
+					}
+				});
+
+				$('#list1Only').val(arrList1Only.sort().join(','));
+				$('#listCommon').val(arrCommon.sort().join(','));
+				$('#list2Only').val(arrList2Only.sort().join(','));
+				$('#listUnionDistinct').val(arrUnion.sort().join(','));
+
+				resizeResultLists();
+			});
+			$("#clearBtn").click(function() {
+    			clearResults();
+			});
+
+			function clearResults() {
+				$('#list1Only').val("");
+    			$('#listCommon').val("");
+    			$('#list2Only').val("");
+    			$('#listUnionDistinct').val("");
+    			resizeResultLists();
+			}
+
+			function enableListAutoSize() {
+    			$('#list1').autosize();
+    			$('#list2').autosize();
+    			$('#list1Only').autosize();
+				$('#listCommon').autosize();
+				$('#list2Only').autosize();
+				$('#listUnionDistinct').autosize();
+			}
+
+			function resizeResultLists() {
+    			$('#list1Only').trigger('autosize.resize');
+				$('#listCommon').trigger('autosize.resize');
+				$('#list2Only').trigger('autosize.resize');
+				$('#listUnionDistinct').trigger('autosize.resize');
+			}
+		</script>
+	</body>
+</html>
