@@ -1,0 +1,8 @@
+Make Duplicates appear when list contents change
+	Possibly highlight duplicate rows
+	Add remove duplicates buttons
+Ignore spaces/ newlines
+Options for case
+Delimeter selection type
+	Generalisation from list to Items in code
+Seperate out script into it's own file
