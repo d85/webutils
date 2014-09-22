@@ -97,19 +97,8 @@
 				var arrList2Only = [];
 				var arrCommon = [];
 				var arrUnion = [];
-				
-				var arrList1Unique = [];
-				var arrList1Duplicates = [];
-				var arrList2Unique = [];
-				var arrList2Duplicates = [];
 
 				$.each(list1Items, function(index, value) {
-					if ($.inArray(value, arrList1Unique) === -1) {
-						arrList1Unique.push(value);
-					} else {
-						arrList1Duplicates.push(value);
-					}
-
 					if ($.inArray(value, list2Items) === -1) {
 						// Add to list 1 only
 						if ($.inArray(value, arrList1Only) === -1) {
@@ -127,13 +116,6 @@
 				});
 
 				$.each(list2Items, function(index, value) {
-					if ($.inArray(value, arrList2Unique) === -1 ) {
-						arrList2Unique.push(value);
-					} else {
-						arrList2Duplicates.push(value);
-					}
-
-
 					if ($.inArray(value, list1Items) === -1) {
 						// Add to list 2 only
 						if ($.inArray(value, arrList2Only) === -1) {
@@ -151,17 +133,27 @@
 				$('#list2Only').val(arrList2Only.sort().join('\n'));
 				$('#listUnionDistinct').val(arrUnion.sort().join('\n'));
 
-				if (arrList1Duplicates.length > 0) {
+				resizeResultLists();
+			});
+			$("#list1").blur(function() {
+				var list1Items = $('#list1').val().split('\n');
+
+				var arrList1Unique = [];
+				var arrList1Duplicates = [];
+    			$.each(list1Items, function(index, value) {
+    				if ($.inArray(value, arrList1Unique) === -1) {
+						arrList1Unique.push(value);
+					} else {
+						arrList1Duplicates.push(value);
+					}
+    			});
+
+    			if (arrList1Duplicates.length > 0) {
 					$('#list1Duplicates').text(arrList1Duplicates.sort().join(','));
 					$('#list1DuplicatesDiv').fadeIn( "slow" );
 				}
-				if (arrList2Duplicates.length > 0) {
-					$('#list2Duplicates').text(arrList2Duplicates.sort().join(','));
-					$('#list2DuplicatesDiv').fadeIn( "slow" );
-				}
-
-				resizeResultLists();
 			});
+
 			$("#clearBtn").click(function() {
     			clearResults();
 			});
