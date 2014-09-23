@@ -16,7 +16,7 @@
 					  </div>
 					  <div class="panel-body">
 					    <textarea id="list1"></textarea>
-					  <div id="list1DuplicatesDiv"><strong>Duplicates: </strong><span id="list1Duplicates"></span></div>
+					  <div id="list1DuplicatesDiv" class="wordWrap"><strong>Duplicates: </strong><span id="list1Duplicates"></span></div>
 					  </div>
 					</div>
 				</div>
@@ -27,14 +27,14 @@
 					  </div>
 					  <div class="panel-body">
 					    <textarea id="list2"></textarea>
-					  <div id="list2DuplicatesDiv"><strong>Duplicates: </strong><span id="list2Duplicates"></span></div>
+					  <div id="list2DuplicatesDiv" class="wordWrap"><strong>Duplicates: </strong><span id="list2Duplicates"></span></div>
 					  </div>
 					</div>
 				</div>
 				<div class="col-sm-12 col-xs-12">
 					<div class="center bottomSpace">
-						<a id="clearBtn" class="btn btn-default btn-lg" role="button">Clear results</a>
-						<a id="compareBtn" class="btn btn-primary btn-lg" role="button">Compare</a>
+						<a id="clearBtn" class="btn btn-default btn-md" role="button">Clear results</a>
+						<a id="compareBtn" class="btn btn-default btn-md" role="button">Compare</a>
 					</div>
 				</div>
 				<div class="col-sm-6 col-xs-12">
@@ -135,24 +135,39 @@
 
 				resizeResultLists();
 			});
-			$("#list1").blur(function() {
-				var list1Items = $('#list1').val().split('\n');
 
-				var arrList1Unique = [];
-				var arrList1Duplicates = [];
-    			$.each(list1Items, function(index, value) {
-    				if ($.inArray(value, arrList1Unique) === -1) {
-						arrList1Unique.push(value);
-					} else {
-						arrList1Duplicates.push(value);
-					}
-    			});
+			$("#list1").blur(function() {
+				var arrList1Duplicates = getDuplicates(this.value);
 
     			if (arrList1Duplicates.length > 0) {
 					$('#list1Duplicates').text(arrList1Duplicates.sort().join(','));
 					$('#list1DuplicatesDiv').fadeIn( "slow" );
 				}
 			});
+
+			$("#list2").blur(function() {
+				var arrList2Duplicates = getDuplicates(this.value);
+
+    			if (arrList2Duplicates.length > 0) {
+					$('#list2Duplicates').text(arrList2Duplicates.sort().join(','));
+					$('#list2DuplicatesDiv').fadeIn( "slow" );
+				}
+			}); 
+
+			function getDuplicates(listValue) {
+				var listItems = listValue.split('\n');
+				
+				var arrListUnique = [];
+				var arrListDuplicates = [];
+    			$.each(listItems, function(index, value) {
+    				if ($.inArray(value, arrListUnique) === -1) {
+						arrListUnique.push(value);
+					} else {
+						arrListDuplicates.push(value);
+					}
+    			});
+    			return arrListDuplicates;
+			}
 
 			$("#clearBtn").click(function() {
     			clearResults();

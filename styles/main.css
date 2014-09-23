@@ -1,31 +1,28 @@
-html {
-    height: 100%;
-}
 body {
-    height: 100%;
-    margin: 0;
     background-image: url(../assets/images/background.jpg);
-    background-repeat: no-repeat;
-    /*background-attachment: fixed;*/
 }
-
-/*.gradient {
-	background: rgb(63,76,107);
-	background: -moz-linear-gradient(top,  rgba(63,76,107,1) 0%, rgba(63,76,107,1) 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(63,76,107,1)), color-stop(100%,rgba(63,76,107,1)));
-	background: -webkit-linear-gradient(top,  rgba(63,76,107,1) 0%,rgba(63,76,107,1) 100%);
-	background: -o-linear-gradient(top,  rgba(63,76,107,1) 0%,rgba(63,76,107,1) 100%);
-	background: -ms-linear-gradient(top,  rgba(63,76,107,1) 0%,rgba(63,76,107,1) 100%);
-	background: linear-gradient(to bottom,  rgba(63,76,107,1) 0%,rgba(63,76,107,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f4c6b', endColorstr='#3f4c6b',GradientType=0 );
-}*/
 
 textarea {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	width: 100%;
-	rows: 20;
+	background-color: #001;
+	border-color: #213343;
+	color: #12e845!important;
+}
+
+.panel.panel-default .panel-heading {
+	background-image: none;
+	background-color: #212C43;
+}
+
+h3.panel-title {
+	color: #CFCFCF!important;
+}
+
+.panel.panel-default {
+	background-color: #0c1021;
 }
 
 .center {
@@ -35,10 +32,47 @@ textarea {
 .topSpace {
 	padding-top: 20px;
 }
+
 .bottomSpace {
 	padding-bottom: 20px;
 }
 
 #list1DuplicatesDiv, #list2DuplicatesDiv {
+	padding-top: 4px;
+	color: #ddd;
 	display: none;
+}
+
+.wordWrap { 
+   white-space: pre-wrap; 
+   white-space: -moz-pre-wrap; 
+   white-space: -pre-wrap; 
+   white-space: -o-pre-wrap;  
+   word-wrap: break-word;
+}
+
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover
+{
+    outline:0px !important;
+    -webkit-appearance:none;
+}
+
+#clearBtn {
+	border-color: black;
+}
+
+#compareBtn {
+	background-image: none;
+	background-color: #316eac;
+	border-color: black;
+	text-shadow: none;
+	color: white;
 }
