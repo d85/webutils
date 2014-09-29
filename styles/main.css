@@ -12,9 +12,13 @@ textarea {
 	color: #12e845!important;
 }
 
+div.container.topSpace {
+
+}
+
 .panel.panel-default .panel-heading {
 	background-image: none;
-	background-color: #212C43;
+	background-color: #1f2f50;
 }
 
 h3.panel-title {
@@ -23,6 +27,15 @@ h3.panel-title {
 
 .panel.panel-default {
 	background-color: #0c1021;
+}
+
+input[type='checkbox'] {
+
+}
+
+btn-default.active {
+	background-color: #ccc;
+	color: #222;
 }
 
 .center {
@@ -51,18 +64,12 @@ h3.panel-title {
    word-wrap: break-word;
 }
 
-textarea:hover, 
-input:hover, 
-textarea:active, 
-input:active, 
-textarea:focus, 
-input:focus,
-button:focus,
-button:active,
-button:hover
+textarea:active,
+textarea:hover,
+textarea:focus
 {
     outline:0px !important;
-    -webkit-appearance:none;
+    -webkit-appearance:none; 
 }
 
 #clearBtn {

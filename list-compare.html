@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>List comparator</title>
+		<title>Comparator</title>
 		<link rel="stylesheet" href="styles/main.css">
 		<link rel="stylesheet" href="lib/bootstrap-3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="lib/bootstrap-3.2.0/css/bootstrap-theme.min.css">
@@ -12,7 +12,7 @@
 				<div class="col-sm-6 col-xs-12">
 					<div class="panel panel-default">
 					  <div class="panel-heading">
-					    <h3 class="panel-title">List 1</h3>
+					    <h3 class="panel-title">Items 1</h3>
 					  </div>
 					  <div class="panel-body">
 					    <textarea id="list1"></textarea>
@@ -23,7 +23,7 @@
 				<div class="col-sm-6 col-xs-12">
 					<div class="panel panel-default">
 					  <div class="panel-heading">
-					    <h3 class="panel-title">List 2</h3>
+					    <h3 class="panel-title">Items 2</h3>
 					  </div>
 					  <div class="panel-body">
 					    <textarea id="list2"></textarea>
@@ -35,12 +35,32 @@
 					<div class="center bottomSpace">
 						<a id="clearBtn" class="btn btn-default btn-md" role="button">Clear results</a>
 						<a id="compareBtn" class="btn btn-default btn-md" role="button">Compare</a>
+						<div class="checkbox">
+						    <label>
+						        <input type="checkbox" name="cbSort" checked><span style="color: white"> Sort results</span>
+						    </label>
+						</div>
+						<!--
+						<div class="btn-group" data-toggle="buttons">
+						  <label class="btn btn-default">
+						    <input type="radio" name="options" id="rdAppend"> Preserve Order
+						  </label>
+						  <label class="btn btn-default active">
+						    <input type="radio" name="options" id="rdSort" checked> Sort Results
+						  </label>
+						</div>
+						<div class="checkbox">
+						    <label>
+						        <input type="checkbox" name="cbTrim" checked><span style="color: white"> Ignore leading and trailing spaces</span>
+						    </label>
+						</div>
+						-->
 					</div>
 				</div>
 				<div class="col-sm-6 col-xs-12">
 					<div class="panel panel-default">
 					  <div class="panel-heading">
-					    <h3 class="panel-title">List 1 Only</h3>
+					    <h3 class="panel-title">Items 1 only</h3>
 					  </div>
 					  <div class="panel-body">
 					    <textarea id="list1Only"></textarea>
@@ -50,7 +70,7 @@
 				<div class="col-sm-6 col-xs-12">
 					<div class="panel panel-default">
 					  <div class="panel-heading">
-					    <h3 class="panel-title">List 2 Only</h3>
+					    <h3 class="panel-title">Items 2 only</h3>
 					  </div>
 					  <div class="panel-body">
 					    <textarea id="list2Only"></textarea>
@@ -62,7 +82,7 @@
 				<div class="col-sm-6 col-xs-12">
 					<div class="panel panel-default">
 					  <div class="panel-heading">
-					    <h3 class="panel-title">Common to both lists</h3>
+					    <h3 class="panel-title">Common to both</h3>
 					  </div>
 					  <div class="panel-body">
 					    <textarea id="listCommon"></textarea>
@@ -87,16 +107,24 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				enableListAutoSize();
-			});
 
-			$("#compareBtn").click(function() {
-				clearResults();
-				var list1Items = $('#list1').val().split('\n');
-				var list2Items = $('#list2').val().split('\n');
 				var arrList1Only = [];
 				var arrList2Only = [];
 				var arrCommon = [];
 				var arrUnion = [];
+			});
+
+			$("#compareBtn").click(function() {
+				clearResults();
+				var list1Items = $('#list1').val().length > 0 ? $('#list1').val().split('\n') : [];
+				var list2Items = $('#list2').val().length > 0 ? $('#list2').val().split('\n') : [];
+				console.log("list1Items.length: " + list1Items.length);
+				console.log("list2Items.length: " + list2Items.length);
+
+				arrList1Only = [];
+				arrList2Only = [];
+				arrCommon = [];
+				arrUnion = [];
 
 				$.each(list1Items, function(index, value) {
 					if ($.inArray(value, list2Items) === -1) {
@@ -110,6 +138,7 @@
 							arrCommon.push(value);
 						}
 					}
+
 					if ($.inArray(value, arrUnion) === -1) {
 						arrUnion.push(value);
 					}
@@ -128,11 +157,7 @@
 					}
 				});
 
-				$('#list1Only').val(arrList1Only.sort().join('\n'));
-				$('#listCommon').val(arrCommon.sort().join('\n'));
-				$('#list2Only').val(arrList2Only.sort().join('\n'));
-				$('#listUnionDistinct').val(arrUnion.sort().join('\n'));
-
+				populateResults();
 				resizeResultLists();
 			});
 
@@ -172,6 +197,29 @@
 			$("#clearBtn").click(function() {
     			clearResults();
 			});
+
+			$('input[name=cbSort]').change(function(){
+				populateResults();
+			});
+
+			function populateResults() {
+				var arrList1OnlyResult = arrList1Only.slice(0);
+				var arrCommonResult = arrCommon.slice(0);
+				var arrList2OnlyResult = arrList2Only.slice(0);
+				var arrUnionResult = arrUnion.slice(0);
+
+			    if($('input[name=cbSort]').is(':checked')) {
+					arrList1OnlyResult.sort();
+					arrCommonResult.sort();
+					arrList2OnlyResult.sort();
+					arrUnionResult.sort();
+			    }
+
+				$('#list1Only').val(arrList1OnlyResult.join('\n'));
+				$('#listCommon').val(arrCommonResult.join('\n'));
+				$('#list2Only').val(arrList2OnlyResult.join('\n'));
+				$('#listUnionDistinct').val(arrUnionResult.join('\n'));
+			}
 
 			function clearResults() {
 				$('#list1Only').val("");
