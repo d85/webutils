@@ -1,5 +1,6 @@
 body {
-    background-image: url(../assets/images/background.jpg);
+    /*background-image: url(../assets/images/background.jpg);*/
+    background-color: #012!important;
 }
 
 textarea {
@@ -29,14 +30,23 @@ h3.panel-title {
 	background-color: #0c1021;
 }
 
+.btn-radio-custom {
+	/*color: #3d3d3d;*/
+	background-color: #ddd;
+}
+.btn-radio-custom.active, .btn-radio-custom.active:hover {
+	color: white;
+	background-color: #408940;
+}
+
 input[type='checkbox'] {
 
 }
 
-btn-default.active {
+/*btn-default.active {
 	background-color: #ccc;
 	color: #222;
-}
+}*/
 
 .center {
 	text-align: center;
@@ -77,6 +87,7 @@ textarea:focus
 }
 
 #compareBtn {
+	font-weight: bold;
 	background-image: none;
 	background-color: #316eac;
 	border-color: black;
