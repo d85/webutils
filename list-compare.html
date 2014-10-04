@@ -33,11 +33,6 @@
 				</div>
 				<div class="col-sm-12 col-xs-12">
 					<div>
-						<!-- <div class="checkbox">
-						    <label>
-						        <input type="checkbox" name="cbSort" checked><span style="color: white"> Sort results</span>
-						    </label>
-						</div> -->
 						<div id="optionsOuterContainer">
 							<div id="optionsHeadingContainer">
 								<span id="optionsHeadingText">Options</span>
@@ -45,33 +40,35 @@
 							<div id="optionsContainer">
 								<div class="btn-group" data-toggle="buttons">
 								  <label class="btn btn-sm btn-radio-custom active">
-								    <input type="radio" name="rdSort" id="rdSort" checked> Sort results
+								    <input type="radio" name="resultOrder" value="sort" checked> Sort results
 								  </label>
 								  <label class="btn btn-sm btn-radio-custom">
-								    <input type="radio" name="rdPreserve" id="rdPreserve"> Use order provided
+								    <input type="radio" name="resultOrder" value="preserve"> Append Items 2 to Items 1
 								  </label>
 								</div>
 								<br>
 								<br>
+								<!--
 								<div class="btn-group" data-toggle="buttons">
 								  <label class="btn btn-sm btn-radio-custom active">
-								    <input type="radio" name="rdIgnoreBlankChars" id="rdIgnoreBlankChars"> Ignore blank characters
+								    <input type="radio" name="blankChars" value="ignore" checked> Ignore blank characters
 								  </label>
 								  <label class="btn btn-sm btn-radio-custom">
-								    <input type="radio" name="rdIncludeBlankChars" id="rdIncludeBlankChars" checked> Don't ignore
+								    <input type="radio" name="blankChars" value="include"> Don't ignore
 								  </label>
 								</div>
 								<br>
 								<br>
+								-->
 								<div class="btn-group" data-toggle="buttons">
 								  <label class="btn btn-sm btn-radio-custom active">
-								    <input type="radio" name="rdCaseSensitive" id="rdCaseSensitive"> Case sensitive
+								    <input type="radio" name="case" value="sensitive" checked> Case sensitive
 								  </label>
 								  <label class="btn btn-sm btn-radio-custom">
-								    <input type="radio" name="rdCompareUpper" id="rdCompareUpper" checked> Compare in UPPER case
+								    <input type="radio" name="case" value="upper"> Compare in UPPER case
 								  </label>
 								  <label class="btn btn-sm btn-radio-custom">
-								    <input type="radio" name="rdCompareLower" id="rdCompareLower" checked> Compare in lower case
+								    <input type="radio" name="case" value="lower"> Compare in lower case
 								  </label>
 								</div>
 							</div>
@@ -142,10 +139,32 @@
 
 			$("#compareBtn").click(function() {
 				clearResults();
-				var list1Items = $('#list1').val().length > 0 ? $('#list1').val().split('\n') : [];
-				var list2Items = $('#list2').val().length > 0 ? $('#list2').val().split('\n') : [];
-				console.log("list1Items.length: " + list1Items.length);
-				console.log("list2Items.length: " + list2Items.length);
+
+				var list1Text = $('#list1').val();
+				var list2Text = $('#list2').val();
+
+				var list1Items = [];
+				var list2Items = [];
+
+				if (list1Text.length > 0) {
+					if ($('input:radio[name=case]:checked').val() === "upper") {
+						list1Items = list1Text.toUpperCase().split('\n');
+					} else if ($('input:radio[name=case]:checked').val() === "lower") {
+						list1Items = list1Text.toLowerCase().split('\n');
+					} else {
+						list1Items = list1Text.split('\n');
+					}
+				}
+
+				if (list2Text.length > 0) {
+					if ($('input:radio[name=case]:checked').val() === "upper") {
+						list2Items = list2Text.toUpperCase().split('\n');
+					} else if ($('input:radio[name=case]:checked').val() === "lower") {
+						list2Items = list2Text.toLowerCase().split('\n');
+					} else {
+						list2Items = list2Text.split('\n');
+					}
+				}
 
 				arrList1Only = [];
 				arrList2Only = [];
@@ -224,19 +243,13 @@
     			clearResults();
 			});
 
-			$('input[name=cbSort]').change(function(){
-				populateResults();
-			});
-
 			function populateResults() {
 				var arrList1OnlyResult = arrList1Only.slice(0);
 				var arrCommonResult = arrCommon.slice(0);
 				var arrList2OnlyResult = arrList2Only.slice(0);
 				var arrUnionResult = arrUnion.slice(0);
-
-				console.log("before if");
-			    if($('input[name=rdSort]:checked').length > 0) {
-			    console.log("condition met");
+			
+			    if($('input:radio[name=resultOrder]:checked').val() === "sort") {
 					arrList1OnlyResult.sort();
 					arrCommonResult.sort();
 					arrList2OnlyResult.sort();
