@@ -43,7 +43,7 @@
 								    <input type="radio" name="resultOrder" value="sort" checked> Sort results
 								  </label>
 								  <label class="btn btn-sm btn-radio-custom">
-								    <input type="radio" name="resultOrder" value="preserve"> Append Items 2 to Items 1
+								    <input type="radio" name="resultOrder" value="preserve"> Use order provided
 								  </label>
 								</div>
 								<br>
@@ -69,6 +69,9 @@
 								  </label>
 								  <label class="btn btn-sm btn-radio-custom">
 								    <input type="radio" name="case" value="lower"> Compare in lower case
+								  </label>
+								  <label class="btn btn-sm btn-radio-custom">
+								    <input type="radio" name="case" value="camel"> Compare in Camel Case
 								  </label>
 								</div>
 							</div>
@@ -146,11 +149,16 @@
 				var list1Items = [];
 				var list2Items = [];
 
+				console.log($('input:radio[name=case]:checked').val());
+				console.log(convertToCamelCase(list1Text));
+				console.log(convertToCamelCase(list2Text));
 				if (list1Text.length > 0) {
 					if ($('input:radio[name=case]:checked').val() === "upper") {
 						list1Items = list1Text.toUpperCase().split('\n');
 					} else if ($('input:radio[name=case]:checked').val() === "lower") {
 						list1Items = list1Text.toLowerCase().split('\n');
+					} else if ($('input:radio[name=case]:checked').val() === "camel") {
+						list1Items = convertToCamelCase(list1Text).split('\n');
 					} else {
 						list1Items = list1Text.split('\n');
 					}
@@ -161,6 +169,8 @@
 						list2Items = list2Text.toUpperCase().split('\n');
 					} else if ($('input:radio[name=case]:checked').val() === "lower") {
 						list2Items = list2Text.toLowerCase().split('\n');
+					} else if ($('input:radio[name=case]:checked').val() === "camel") {
+						list2Items = convertToCamelCase(list2Text).split('\n');
 					} else {
 						list2Items = list2Text.split('\n');
 					}
@@ -237,6 +247,12 @@
 					}
     			});
     			return arrListDuplicates;
+			}
+
+			function convertToCamelCase(str) {
+			    return str.replace(/(?:^|\s)\w/g, function(match) {
+			        return match.toUpperCase();
+			    });
 			}
 
 			$("#clearBtn").click(function() {
