@@ -222,6 +222,9 @@
     			if (arrList1Duplicates.length > 0) {
 					$('#list1Duplicates').text(arrList1Duplicates.sort().join(','));
 					$('#list1DuplicatesDiv').fadeIn( "slow" );
+				} else {
+					$('#list1DuplicatesDiv').fadeOut( "fast" );
+					$('#list1Duplicates').text("");
 				}
 			});
 
@@ -231,6 +234,9 @@
     			if (arrList2Duplicates.length > 0) {
 					$('#list2Duplicates').text(arrList2Duplicates.sort().join(','));
 					$('#list2DuplicatesDiv').fadeIn( "slow" );
+				} else {
+					$('#list2DuplicatesDiv').fadeOut( "fast" );
+					$('#list2Duplicates').text("");
 				}
 			}); 
 
