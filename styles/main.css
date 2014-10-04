@@ -1,6 +1,6 @@
 body {
     /*background-image: url(../assets/images/background.jpg);*/
-    background-color: #012!important;
+    background-color: #222!important;
 }
 
 textarea {
@@ -8,49 +8,42 @@ textarea {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	width: 100%;
-	background-color: #001;
-	border-color: #213343;
-	color: #12e845!important;
+	background-color: #000;
+	border-color: #888;
 }
 
-div.container.topSpace {
-
+#list1 {
+	color: #FF4050!important;	
 }
 
-.panel.panel-default .panel-heading {
-	background-image: none;
-	background-color: #1f2f50;
+#list2 {
+	color: #6688FF!important;
 }
 
-h3.panel-title {
-	color: #CFCFCF!important;
+#list1Only {
+	color: #FF4050!important;	
 }
 
 .panel.panel-default {
-	background-color: #0c1021;
+  background-color: #111;
 }
 
 .btn-radio-custom {
-	/*color: #3d3d3d;*/
 	background-color: #ddd;
+	margin: 0 5px;
 }
+
 .btn-radio-custom.active, .btn-radio-custom.active:hover {
 	color: white;
-	background-color: #408940;
+	background-color: #994040;
+	/* background-color: #409940; */
+	/* background-color: #405099; */
 }
-
-input[type='checkbox'] {
-
-}
-
-/*btn-default.active {
-	background-color: #ccc;
-	color: #222;
-}*/
 
 .center {
 	text-align: center;
 }
+
 
 .topSpace {
 	padding-top: 20px;
@@ -59,6 +52,7 @@ input[type='checkbox'] {
 .bottomSpace {
 	padding-bottom: 20px;
 }
+
 
 #list1DuplicatesDiv, #list2DuplicatesDiv {
 	padding-top: 4px;
@@ -78,18 +72,18 @@ textarea:active,
 textarea:hover,
 textarea:focus
 {
-    outline:0px !important;
-    -webkit-appearance:none; 
+	outline-color: #35b;
 }
 
 #clearBtn {
 	border-color: black;
+	text-shadow: none;
 }
 
 #compareBtn {
 	font-weight: bold;
 	background-image: none;
-	background-color: #316eac;
+	background-color: #b33;
 	border-color: black;
 	text-shadow: none;
 	color: white;

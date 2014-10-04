@@ -33,62 +33,55 @@
 				</div>
 				<div class="col-sm-12 col-xs-12">
 					<div>
-
 						<!-- <div class="checkbox">
 						    <label>
 						        <input type="checkbox" name="cbSort" checked><span style="color: white"> Sort results</span>
 						    </label>
 						</div> -->
-
-						<div style = "background-color: #111; padding: 15px; border: 1px solid black">
-							<span style="color: #ddd; font-size: 22px;">Options</span>
-							<br/>
-							<br/>
-							<div class="btn-group" data-toggle="buttons">
-							  <label class="btn btn-sm btn-radio-custom active">
-							    <input type="radio" name="rdSort" id="rdSort" checked> Sort results
-							  </label>
-							  <label class="btn btn-sm btn-radio-custom">
-							    <input type="radio" name="rdPreserve" id="rdPreserve"> Use order provided
-							  </label>
+						<div style = "border: 1px solid #000">
+							<div style="background-color: #111;">
+							<span style="color: #ddd; font-size: 22px; padding-left: 15px">Options</span>
 							</div>
-							<br/>
-							<br/>
-							<div class="btn-group" data-toggle="buttons">
-							  <label class="btn btn-sm btn-radio-custom active">
-							    <input type="radio" name="rdIgnoreBlankChars" id="rdIgnoreBlankChars"> Ignore blank characters
-							  </label>
-							  <label class="btn btn-sm btn-radio-custom">
-							    <input type="radio" name="rdIncludeBlankChars" id="rdIncludeBlankChars" checked> Don't ignore
-							  </label>
+							<div style="padding: 0 15px 15px 15px; background-color: #111">
+								<br/>
+								<div class="btn-group" data-toggle="buttons">
+								  <label class="btn btn-sm btn-radio-custom active">
+								    <input type="radio" name="rdSort" id="rdSort" checked> Sort results
+								  </label>
+								  <label class="btn btn-sm btn-radio-custom">
+								    <input type="radio" name="rdPreserve" id="rdPreserve"> Use order provided
+								  </label>
+								</div>
+								<br/>
+								<br/>
+								<div class="btn-group" data-toggle="buttons">
+								  <label class="btn btn-sm btn-radio-custom active">
+								    <input type="radio" name="rdIgnoreBlankChars" id="rdIgnoreBlankChars"> Ignore blank characters
+								  </label>
+								  <label class="btn btn-sm btn-radio-custom">
+								    <input type="radio" name="rdIncludeBlankChars" id="rdIncludeBlankChars" checked> Don't ignore
+								  </label>
+								</div>
+								<br/>
+								<br/>
+								<div class="btn-group" data-toggle="buttons">
+								  <label class="btn btn-sm btn-radio-custom active">
+								    <input type="radio" name="rdCaseSensitive" id="rdCaseSensitive"> Case sensitive
+								  </label>
+								  <label class="btn btn-sm btn-radio-custom">
+								    <input type="radio" name="rdCompareUpper" id="rdCompareUpper" checked> Compare in UPPER case
+								  </label>
+								  <label class="btn btn-sm btn-radio-custom">
+								    <input type="radio" name="rdCompareLower" id="rdCompareLower" checked> Compare in lower case
+								  </label>
+								</div>
 							</div>
-							<br/>
-							<br/>
-							<div class="btn-group" data-toggle="buttons">
-							  <label class="btn btn-sm btn-radio-custom active">
-							    <input type="radio" name="rdCaseSensitive" id="rdCaseSensitive"> Case sensitive
-							  </label>
-							  <label class="btn btn-sm btn-radio-custom">
-							    <input type="radio" name="rdCompareUpper" id="rdCompareUpper" checked> Compare in UPPER case
-							  </label>
-							  <label class="btn btn-sm btn-radio-custom">
-							    <input type="radio" name="rdCompareLower" id="rdCompareLower" checked> Compare in lower case
-							  </label>
-							</div>
-
 						</div>
 						<br/>
 					</div>
 					<div class="center bottomSpace">
 						<a id="clearBtn" class="btn btn-default btn-md" role="button">Clear results</a>
 						<a id="compareBtn" class="btn btn-default btn-md" role="button">Compare</a>
-						<!--
-						<div class="checkbox">
-						    <label>
-						        <input type="checkbox" name="cbTrim" checked><span style="color: white"> Ignore leading and trailing spaces</span>
-						    </label>
-						</div>
-						-->
 					</div>
 				</div>
 				<div class="col-sm-6 col-xs-12">
@@ -98,6 +91,7 @@
 					  </div>
 					  <div class="panel-body">
 					    <textarea id="list1Only"></textarea>
+					    <!-- <div id="list1Only"></div> -->
 					  </div>
 					</div>
 				</div>
@@ -241,7 +235,6 @@
 				var arrCommonResult = arrCommon.slice(0);
 				var arrList2OnlyResult = arrList2Only.slice(0);
 				var arrUnionResult = arrUnion.slice(0);
-
 
 				console.log("before if");
 			    if($('input[name=rdSort]:checked').length > 0) {
