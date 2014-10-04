@@ -1,3 +1,4 @@
+/***** General styling *****/
 body {
     /*background-image: url(../assets/images/background.jpg);*/
     background-color: #222!important;
@@ -12,20 +13,76 @@ textarea {
 	border-color: #888;
 }
 
-#list1 {
+textarea:active,
+textarea:hover,
+textarea:focus
+{
+	outline-color: #35b;
+}
+
+.list1Items {
 	color: #FF4050!important;	
 }
 
-#list2 {
+.list2Items {
 	color: #6688FF!important;
-}
-
-#list1Only {
-	color: #FF4050!important;	
 }
 
 .panel.panel-default {
   background-color: #111;
+}
+
+/***** Duplicates area *****/
+#list1DuplicatesDiv, #list2DuplicatesDiv {
+	display: none;
+	color: #ddd;
+	padding-top: 4px;
+}
+
+.wordWrap { 
+   white-space: pre-wrap; 
+   white-space: -moz-pre-wrap; 
+   white-space: -pre-wrap; 
+   white-space: -o-pre-wrap;  
+   word-wrap: break-word;
+}
+
+/***** Options *****/
+#optionsOuterContainer {
+	background-color: #111;
+	border: 2px solid #000;
+}
+
+#optionsHeadingContainer {
+	padding: 6px 0 10px 0;
+}
+
+#optionsHeadingText {
+	color: #ddd;
+	font-size: 22px;
+	padding-left: 15px;
+}
+
+#optionsContainer {
+	padding: 0 15px 15px 15px; 
+	background-color: #111;
+}
+ 
+/***** Button styling *****/
+.btn {
+	text-shadow: none!important;
+}
+
+#clearBtn {
+	border-color: black;
+}
+
+#compareBtn {
+	font-weight: bold;
+	background-image: none;
+	background-color: #b33;
+	border-color: black;
+	color: white;
 }
 
 .btn-radio-custom {
@@ -40,10 +97,10 @@ textarea {
 	/* background-color: #405099; */
 }
 
+/***** Layout *****/
 .center {
 	text-align: center;
 }
-
 
 .topSpace {
 	padding-top: 20px;
@@ -51,40 +108,4 @@ textarea {
 
 .bottomSpace {
 	padding-bottom: 20px;
-}
-
-
-#list1DuplicatesDiv, #list2DuplicatesDiv {
-	padding-top: 4px;
-	color: #ddd;
-	display: none;
-}
-
-.wordWrap { 
-   white-space: pre-wrap; 
-   white-space: -moz-pre-wrap; 
-   white-space: -pre-wrap; 
-   white-space: -o-pre-wrap;  
-   word-wrap: break-word;
-}
-
-textarea:active,
-textarea:hover,
-textarea:focus
-{
-	outline-color: #35b;
-}
-
-#clearBtn {
-	border-color: black;
-	text-shadow: none;
-}
-
-#compareBtn {
-	font-weight: bold;
-	background-image: none;
-	background-color: #b33;
-	border-color: black;
-	text-shadow: none;
-	color: white;
 }

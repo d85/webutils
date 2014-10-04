@@ -15,7 +15,7 @@
 					    <h3 class="panel-title">Items 1</h3>
 					  </div>
 					  <div class="panel-body">
-					    <textarea id="list1"></textarea>
+					    <textarea id="list1" class="list1Items"></textarea>
 					  <div id="list1DuplicatesDiv" class="wordWrap"><strong>Duplicates: </strong><span id="list1Duplicates"></span></div>
 					  </div>
 					</div>
@@ -26,7 +26,7 @@
 					    <h3 class="panel-title">Items 2</h3>
 					  </div>
 					  <div class="panel-body">
-					    <textarea id="list2"></textarea>
+					    <textarea id="list2" class="list2Items"></textarea>
 					  <div id="list2DuplicatesDiv" class="wordWrap"><strong>Duplicates: </strong><span id="list2Duplicates"></span></div>
 					  </div>
 					</div>
@@ -38,12 +38,11 @@
 						        <input type="checkbox" name="cbSort" checked><span style="color: white"> Sort results</span>
 						    </label>
 						</div> -->
-						<div style = "border: 1px solid #000">
-							<div style="background-color: #111;">
-							<span style="color: #ddd; font-size: 22px; padding-left: 15px">Options</span>
+						<div id="optionsOuterContainer">
+							<div id="optionsHeadingContainer">
+								<span id="optionsHeadingText">Options</span>
 							</div>
-							<div style="padding: 0 15px 15px 15px; background-color: #111">
-								<br/>
+							<div id="optionsContainer">
 								<div class="btn-group" data-toggle="buttons">
 								  <label class="btn btn-sm btn-radio-custom active">
 								    <input type="radio" name="rdSort" id="rdSort" checked> Sort results
@@ -52,8 +51,8 @@
 								    <input type="radio" name="rdPreserve" id="rdPreserve"> Use order provided
 								  </label>
 								</div>
-								<br/>
-								<br/>
+								<br>
+								<br>
 								<div class="btn-group" data-toggle="buttons">
 								  <label class="btn btn-sm btn-radio-custom active">
 								    <input type="radio" name="rdIgnoreBlankChars" id="rdIgnoreBlankChars"> Ignore blank characters
@@ -62,8 +61,8 @@
 								    <input type="radio" name="rdIncludeBlankChars" id="rdIncludeBlankChars" checked> Don't ignore
 								  </label>
 								</div>
-								<br/>
-								<br/>
+								<br>
+								<br>
 								<div class="btn-group" data-toggle="buttons">
 								  <label class="btn btn-sm btn-radio-custom active">
 								    <input type="radio" name="rdCaseSensitive" id="rdCaseSensitive"> Case sensitive
@@ -90,7 +89,7 @@
 					    <h3 class="panel-title">Items 1 only</h3>
 					  </div>
 					  <div class="panel-body">
-					    <textarea id="list1Only"></textarea>
+					    <textarea id="list1Only" class="list1Items"></textarea>
 					    <!-- <div id="list1Only"></div> -->
 					  </div>
 					</div>
@@ -101,7 +100,7 @@
 					    <h3 class="panel-title">Items 2 only</h3>
 					  </div>
 					  <div class="panel-body">
-					    <textarea id="list2Only"></textarea>
+					    <textarea id="list2Only" class="list2Items"></textarea>
 					  </div>
 					</div>
 				</div>
@@ -135,7 +134,6 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				enableListAutoSize();
-
 				var arrList1Only = [];
 				var arrList2Only = [];
 				var arrCommon = [];
